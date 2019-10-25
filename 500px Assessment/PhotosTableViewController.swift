@@ -13,8 +13,7 @@ class PhotosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        ApiProvider.shared.fetchPopularPhotos()
     }
 
     // MARK: - Table view data source
@@ -27,14 +26,12 @@ class PhotosTableViewController: UITableViewController {
         return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath)
 
         return cell
     }
-     */
+    
     
 }

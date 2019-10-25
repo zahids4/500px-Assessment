@@ -14,6 +14,7 @@
 		30FE21C8236385B9006B8A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */; };
 		30FE21D3236385BA006B8A21 /* _00px_AssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */; };
 		30FE21DE2363896D006B8A21 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */; };
+		30FE21E0236392A6006B8A21 /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21DF236392A6006B8A21 /* ApiProvider.swift */; };
 		459A0874D5DFB1069928877A /* Pods_500px_Assessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A3758B96958FC0FF239C87 /* Pods_500px_Assessment.framework */; };
 		9162647313C54A36FCEE783B /* Pods_500px_AssessmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F602B85B7E542DCA35652789 /* Pods_500px_AssessmentTests.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _00px_AssessmentTests.swift; sourceTree = "<group>"; };
 		30FE21D4236385BA006B8A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
+		30FE21DF236392A6006B8A21 /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
 		9CEF0CED7B5FD8E45FDA2B72 /* Pods-500px Assessment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.release.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.release.xcconfig"; sourceTree = "<group>"; };
 		CB0D129BB1C85D2A883F706D /* Pods-500px Assessment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.debug.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.debug.xcconfig"; sourceTree = "<group>"; };
 		D70834A1128CAE004AFF41AD /* Pods-500px AssessmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px AssessmentTests.debug.xcconfig"; path = "Target Support Files/Pods-500px AssessmentTests/Pods-500px AssessmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */,
 				30FE21C9236385B9006B8A21 /* Info.plist */,
 				30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */,
+				30FE21DF236392A6006B8A21 /* ApiProvider.swift */,
 			);
 			path = "500px Assessment";
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30FE21BC236385B7006B8A21 /* AppDelegate.swift in Sources */,
+				30FE21E0236392A6006B8A21 /* ApiProvider.swift in Sources */,
 				30FE21BE236385B7006B8A21 /* SceneDelegate.swift in Sources */,
 				30FE21DE2363896D006B8A21 /* PhotosTableViewController.swift in Sources */,
 			);
