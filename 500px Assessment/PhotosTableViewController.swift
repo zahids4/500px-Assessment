@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
-    fileprivate var allPopularPhotos = PopularPhotos(photos: []) {
+    fileprivate var photoViewModels = [PhotoViewModel]() {
         didSet {
             tableView.reloadData()
         }
@@ -21,7 +21,7 @@ class PhotosTableViewController: UITableViewController {
         ApiProvider.shared.fetchPopularPhotos() { result in
             switch result {
             case .success(let popularPhotos):
-                self.allPopularPhotos = popularPhotos
+                self.photoViewModels = popularPhotos.convertPhotosToViewModels()
             case .failure(let error):
                 print("Error: \(error)")
             }
@@ -35,17 +35,14 @@ class PhotosTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allPopularPhotos.photos.count
+        return photoViewModels.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath)
-        let photo = allPopularPhotos.photos[indexPath.row]
+        let photo = photoViewModels[indexPath.row]
         cell.textLabel?.text = photo.name
-        cell.detailTextLabel?.text = photo.imageUrl.first
+        cell.detailTextLabel?.text = photo.image
         return cell
     }
-    
-    
 }
