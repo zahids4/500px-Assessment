@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		30FE21BC236385B7006B8A21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21BB236385B7006B8A21 /* AppDelegate.swift */; };
 		30FE21BE236385B7006B8A21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21BD236385B7006B8A21 /* SceneDelegate.swift */; };
-		30FE21C0236385B7006B8A21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21BF236385B7006B8A21 /* ViewController.swift */; };
 		30FE21C3236385B7006B8A21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C1236385B7006B8A21 /* Main.storyboard */; };
 		30FE21C5236385B9006B8A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C4236385B9006B8A21 /* Assets.xcassets */; };
 		30FE21C8236385B9006B8A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */; };
 		30FE21D3236385BA006B8A21 /* _00px_AssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */; };
+		30FE21DE2363896D006B8A21 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */; };
 		459A0874D5DFB1069928877A /* Pods_500px_Assessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A3758B96958FC0FF239C87 /* Pods_500px_Assessment.framework */; };
 		9162647313C54A36FCEE783B /* Pods_500px_AssessmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F602B85B7E542DCA35652789 /* Pods_500px_AssessmentTests.framework */; };
 /* End PBXBuildFile section */
@@ -33,7 +33,6 @@
 		30FE21B8236385B7006B8A21 /* 500px Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "500px Assessment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FE21BB236385B7006B8A21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30FE21BD236385B7006B8A21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		30FE21BF236385B7006B8A21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30FE21C2236385B7006B8A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30FE21C4236385B9006B8A21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30FE21C7236385B9006B8A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		30FE21CE236385BA006B8A21 /* 500px AssessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "500px AssessmentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _00px_AssessmentTests.swift; sourceTree = "<group>"; };
 		30FE21D4236385BA006B8A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		9CEF0CED7B5FD8E45FDA2B72 /* Pods-500px Assessment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.release.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.release.xcconfig"; sourceTree = "<group>"; };
 		CB0D129BB1C85D2A883F706D /* Pods-500px Assessment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.debug.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.debug.xcconfig"; sourceTree = "<group>"; };
 		D70834A1128CAE004AFF41AD /* Pods-500px AssessmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px AssessmentTests.debug.xcconfig"; path = "Target Support Files/Pods-500px AssessmentTests/Pods-500px AssessmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 				D70834A1128CAE004AFF41AD /* Pods-500px AssessmentTests.debug.xcconfig */,
 				024866E552DCBA8FD8742857 /* Pods-500px AssessmentTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -114,11 +113,11 @@
 			children = (
 				30FE21BB236385B7006B8A21 /* AppDelegate.swift */,
 				30FE21BD236385B7006B8A21 /* SceneDelegate.swift */,
-				30FE21BF236385B7006B8A21 /* ViewController.swift */,
 				30FE21C1236385B7006B8A21 /* Main.storyboard */,
 				30FE21C4236385B9006B8A21 /* Assets.xcassets */,
 				30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */,
 				30FE21C9236385B9006B8A21 /* Info.plist */,
+				30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */,
 			);
 			path = "500px Assessment";
 			sourceTree = "<group>";
@@ -300,9 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30FE21C0236385B7006B8A21 /* ViewController.swift in Sources */,
 				30FE21BC236385B7006B8A21 /* AppDelegate.swift in Sources */,
 				30FE21BE236385B7006B8A21 /* SceneDelegate.swift in Sources */,
+				30FE21DE2363896D006B8A21 /* PhotosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
