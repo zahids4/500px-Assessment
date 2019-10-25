@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             let data = try NSString(contentsOfFile: path,
                 encoding: String.Encoding.ascii.rawValue)
-            print(data)
             apiKey = data as String
         }
         catch {
