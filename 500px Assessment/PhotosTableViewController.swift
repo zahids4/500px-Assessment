@@ -10,10 +10,22 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
-
+    fileprivate var allPopularPhotos = PopularPhotos(photos: []) {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ApiProvider.shared.fetchPopularPhotos()
+        ApiProvider.shared.fetchPopularPhotos() { result in
+            switch result {
+            case .success(let popularPhotos):
+                self.allPopularPhotos = popularPhotos
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -23,13 +35,15 @@ class PhotosTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return allPopularPhotos.photos.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath)
-
+        let photo = allPopularPhotos.photos[indexPath.row]
+        cell.textLabel?.text = photo.name
+        cell.detailTextLabel?.text = photo.imageUrl.first
         return cell
     }
     

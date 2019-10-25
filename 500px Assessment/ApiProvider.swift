@@ -19,13 +19,23 @@ class ApiProvider {
     private init() {}
     static let shared = ApiProvider()
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let jsonDecoder: JSONDecoder = {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        return jsonDecoder
+    }()
     
-    func fetchPopularPhotos() {
+    func fetchPopularPhotos(completionHandler: @escaping (Result<PopularPhotos, Error>) -> ()) {
         let paramsForPhotos = params(feature: "popular", consumer_key: appDelegate.apiKey)
-        AF.request("https://api.500px.com/v1/photos",
-                   parameters: paramsForPhotos).responseJSON { response in
-                        print("Response: \(response)")
+        AF.request("https://api.500px.com/v1/photos", parameters: paramsForPhotos)
+        .responseDecodable(of: PopularPhotos.self, decoder: jsonDecoder) { response in
+            switch response.result {
+                case .success(let photos):
+                    completionHandler(.success(photos))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+            }
         }
     }
 }
