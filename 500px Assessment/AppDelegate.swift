@@ -10,11 +10,19 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    //This is my temporary solution, until I find a much better way of storing and accessing the api key
+    let path = "/Users/SaimZahid13/Desktop/api_key.txt"
+    var apiKey = ""
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        do {
+            let data = try NSString(contentsOfFile: path,
+                encoding: String.Encoding.ascii.rawValue)
+            print(data)
+            apiKey = data as String
+        }
+        catch {
+            fatalError("Could not get API Key")
+        }
         return true
     }
 
