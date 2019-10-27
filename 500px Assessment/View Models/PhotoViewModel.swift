@@ -12,22 +12,29 @@ enum ImageDownloadState {
   case new, downloaded, failed
 }
 
-public class PhotoViewModel {
+protocol PhotoViewModelProtocol {
+    var name: String { get }
+    var imageUrlString: String { get }
+    var imageDownloadState: ImageDownloadState { get set }
+    var image: UIImage { get set }
+}
+
+class PhotoViewModel: PhotoViewModelProtocol {
     private let photo: Photo
 
     public init(photo: Photo) {
       self.photo = photo
     }
 
-    public var name: String {
+    var name: String {
       return photo.name
     }
 
-    public var imageUrlString: String {
+    var imageUrlString: String {
         return photo.imageUrl.first ?? ""
     }
     
     var imageDownloadState: ImageDownloadState = .new
     
-    var image = UIImage(named: "Placeholder")
+    var image: UIImage = UIImage(named: "Placeholder")!
 }

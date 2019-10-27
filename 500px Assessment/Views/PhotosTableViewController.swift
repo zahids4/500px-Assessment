@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
+    private var currentPage = 1
     private let operations = ImageDownloadOperations()
-    private var photoViewModels = [PhotoViewModel]() {
+    private var photoViewModels = [PhotoViewModelProtocol]() {
         didSet {
             tableView.reloadData()
         }
@@ -23,6 +24,7 @@ class PhotosTableViewController: UITableViewController {
     }
     
     private func fetchPopularPhotos(page: Int) {
+        currentPage = page
         ApiProvider.shared.fetchPopularPhotos(page: page) { result in
             switch result {
             case .success(let popularPhotos):
@@ -71,7 +73,7 @@ class PhotosTableViewController: UITableViewController {
         return cell
     }
     
-    func startDownloadOperation(for photo: PhotoViewModel, at indexPath: IndexPath) {
+    func startDownloadOperation(for photo: PhotoViewModelProtocol, at indexPath: IndexPath) {
       guard operations.downloadsInProgress[indexPath] == nil else {
         return
       }

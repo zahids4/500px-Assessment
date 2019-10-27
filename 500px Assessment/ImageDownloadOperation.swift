@@ -16,9 +16,9 @@ class ImageDownloadOperations {
 }
 
 class DownloadOperation: Operation {
-    var photo: PhotoViewModel
+    var photo: PhotoViewModelProtocol
     
-    init(_ photo: PhotoViewModel) {
+    init(_ photo: PhotoViewModelProtocol) {
         self.photo = photo
     }
     
@@ -32,11 +32,11 @@ class DownloadOperation: Operation {
         }
         
         if !imageData.isEmpty {
-          photo.image = UIImage(data:imageData)
-          photo.imageDownloadState = .downloaded
+            photo.image = UIImage(data:imageData)!
+            photo.imageDownloadState = .downloaded
         } else {
-          photo.imageDownloadState = .failed
-          photo.image = UIImage(named: "Failed")
+            photo.imageDownloadState = .failed
+            photo.image = UIImage(named: "Failed")!
         }
     }
     

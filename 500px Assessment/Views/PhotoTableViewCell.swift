@@ -12,7 +12,7 @@ class PhotoTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
 
-    func configure(using photoViewModel: PhotoViewModel) {
+    func configure(using photoViewModel: PhotoViewModelProtocol) {
         nameLabel.text = photoViewModel.name
         photoImageView.image = photoViewModel.image
     }
