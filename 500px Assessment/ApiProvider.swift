@@ -9,11 +9,12 @@
 import Foundation
 import Alamofire
 
-private let imageSize = "2048"
+private let imageSize = 2048
 struct params: Encodable {
     let feature: String
     let consumer_key: String
-    let image_size: String
+    let image_size: Int
+    let page: Int
 }
 
 class ApiProvider {
@@ -27,8 +28,12 @@ class ApiProvider {
         return jsonDecoder
     }()
     
-    func fetchPopularPhotos(completionHandler: @escaping (Result<PopularPhotos, Error>) -> ()) {
-        let paramsForPhotos = params(feature: "popular", consumer_key: appDelegate.apiKey, image_size: imageSize)
+    func fetchPopularPhotos(page: Int, completionHandler: @escaping (Result<PopularPhotos, Error>) -> ()) {
+        let paramsForPhotos = params(feature: "popular",
+                                     consumer_key: appDelegate.apiKey,
+                                     image_size: imageSize,
+                                     page: page)
+        
         AF.request("https://api.500px.com/v1/photos", parameters: paramsForPhotos)
         .responseDecodable(of: PopularPhotos.self, decoder: jsonDecoder) { response in
             switch response.result {

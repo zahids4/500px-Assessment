@@ -19,11 +19,11 @@ class PhotosTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPopularPhotos()
+        fetchPopularPhotos(page: 1)
     }
     
-    private func fetchPopularPhotos() {
-        ApiProvider.shared.fetchPopularPhotos() { result in
+    private func fetchPopularPhotos(page: Int) {
+        ApiProvider.shared.fetchPopularPhotos(page: page) { result in
             switch result {
             case .success(let popularPhotos):
                 self.photoViewModels = popularPhotos.convertPhotosToViewModels()
