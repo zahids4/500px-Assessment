@@ -26,7 +26,7 @@ class PhotosTableViewController: UITableViewController {
         ApiProvider.shared.fetchPopularPhotos(page: page) { result in
             switch result {
             case .success(let popularPhotos):
-                self.photoViewModels = popularPhotos.convertPhotosToViewModels()
+                self.photoViewModels += popularPhotos.convertPhotosToViewModels()
             case .failure(let error):
                 print("Error: \(error)")
             }
