@@ -14,6 +14,7 @@ class PhotoTableViewCell: UITableViewCell {
 
     func configure(using photoViewModel: PhotoViewModel) {
         nameLabel.text = photoViewModel.name
+        photoImageView.image = photoViewModel.image
     }
 
 }
