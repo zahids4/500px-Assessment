@@ -17,6 +17,7 @@ protocol PhotoViewModelProtocol {
     var imageUrlString: String { get }
     var imageDownloadState: ImageDownloadState { get set }
     var image: UIImage { get set }
+    func getDataFromImageURL() -> Data?
 }
 
 class PhotoViewModel: PhotoViewModelProtocol {
@@ -37,4 +38,8 @@ class PhotoViewModel: PhotoViewModelProtocol {
     var imageDownloadState: ImageDownloadState = .new
     
     var image: UIImage = UIImage(named: "Placeholder")!
+    
+    func getDataFromImageURL() -> Data? {
+        return try? Data(contentsOf: URL(string: imageUrlString)!)
+    }
 }

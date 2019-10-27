@@ -25,7 +25,7 @@ class DownloadOperation: Operation {
     override func main() {
         if isCancelled { return }
 
-        guard let imageData = try? Data(contentsOf: URL(string: photo.imageUrlString)!) else { return }
+        guard let imageData = photo.getDataFromImageURL() else { return }
         
         if isCancelled {
           return
