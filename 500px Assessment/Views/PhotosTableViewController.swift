@@ -47,6 +47,12 @@ class PhotosTableViewController: UITableViewController {
         return 350.0
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         
@@ -64,9 +70,6 @@ class PhotosTableViewController: UITableViewController {
 
         return cell
     }
-    
-    
-
     
     func startDownloadOperation(for photo: PhotoViewModel, at indexPath: IndexPath) {
       guard operations.downloadsInProgress[indexPath] == nil else {
