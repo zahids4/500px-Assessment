@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
-    fileprivate var photoViewModels = [PhotoViewModel]() {
+    private let operations = ImageDownloadOperations()
+    private var photoViewModels = [PhotoViewModel]() {
         didSet {
             tableView.reloadData()
         }
@@ -51,7 +52,41 @@ class PhotosTableViewController: UITableViewController {
         
         let photo = photoViewModels[indexPath.row]
         cell.configure(using: photo)
+        
+        switch (photo.imageDownloadState) {
+        case .failed:
+          cell.nameLabel?.text = "Failed to load"
+        case .new:
+            startDownloadOperation(for: photo, at: indexPath)
+        case .downloaded:
+            print("Do nothing")
+        }
 
         return cell
+    }
+    
+    
+
+    
+    func startDownloadOperation(for photo: PhotoViewModel, at indexPath: IndexPath) {
+      guard operations.downloadsInProgress[indexPath] == nil else {
+        return
+      }
+      
+      let downloadOperation = DownloadOperation(photo)
+        
+      downloadOperation.completionBlock = {
+        if downloadOperation.isCancelled {
+          return
+        }
+        
+        DispatchQueue.main.async {
+          self.operations.downloadsInProgress.removeValue(forKey: indexPath)
+          self.tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+      }
+        
+      operations.downloadsInProgress[indexPath] = downloadOperation
+      operations.operationQueue.addOperation(downloadOperation)
     }
 }
