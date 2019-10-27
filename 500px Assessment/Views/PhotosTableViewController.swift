@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
-    fileprivate let operations = ImageDownloadOperations()
     fileprivate var photoViewModels = [PhotoViewModel]() {
         didSet {
             tableView.reloadData()
