@@ -21,6 +21,7 @@
 		30FE21EA2366232A006B8A21 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21E92366232A006B8A21 /* PhotoTableViewCell.swift */; };
 		30FE21ED23662533006B8A21 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21EC23662533006B8A21 /* ImageDownloadOperation.swift */; };
 		30FE21EF23666120006B8A21 /* PhotosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21EE23666120006B8A21 /* PhotosListViewModel.swift */; };
+		30FE21F223674640006B8A21 /* PhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21F123674640006B8A21 /* PhotoDetailsViewController.swift */; };
 		459A0874D5DFB1069928877A /* Pods_500px_Assessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A3758B96958FC0FF239C87 /* Pods_500px_Assessment.framework */; };
 		9162647313C54A36FCEE783B /* Pods_500px_AssessmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F602B85B7E542DCA35652789 /* Pods_500px_AssessmentTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		30FE21E92366232A006B8A21 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		30FE21EC23662533006B8A21 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
 		30FE21EE23666120006B8A21 /* PhotosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListViewModel.swift; sourceTree = "<group>"; };
+		30FE21F123674640006B8A21 /* PhotoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsViewController.swift; sourceTree = "<group>"; };
 		9CEF0CED7B5FD8E45FDA2B72 /* Pods-500px Assessment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.release.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.release.xcconfig"; sourceTree = "<group>"; };
 		CB0D129BB1C85D2A883F706D /* Pods-500px Assessment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px Assessment.debug.xcconfig"; path = "Target Support Files/Pods-500px Assessment/Pods-500px Assessment.debug.xcconfig"; sourceTree = "<group>"; };
 		D70834A1128CAE004AFF41AD /* Pods-500px AssessmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-500px AssessmentTests.debug.xcconfig"; path = "Target Support Files/Pods-500px AssessmentTests/Pods-500px AssessmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,8 +136,7 @@
 				30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */,
 				30FE21C9236385B9006B8A21 /* Info.plist */,
 				30FE21EB236624FD006B8A21 /* Views */,
-				30FE21DF236392A6006B8A21 /* ApiProvider.swift */,
-				30FE21EC23662533006B8A21 /* ImageDownloadOperation.swift */,
+				30FE21F023674410006B8A21 /* Networking */,
 			);
 			path = "500px Assessment";
 			sourceTree = "<group>";
@@ -172,8 +173,18 @@
 			children = (
 				30FE21E92366232A006B8A21 /* PhotoTableViewCell.swift */,
 				30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */,
+				30FE21F123674640006B8A21 /* PhotoDetailsViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		30FE21F023674410006B8A21 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				30FE21DF236392A6006B8A21 /* ApiProvider.swift */,
+				30FE21EC23662533006B8A21 /* ImageDownloadOperation.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +359,7 @@
 				30FE21BC236385B7006B8A21 /* AppDelegate.swift in Sources */,
 				30FE21E0236392A6006B8A21 /* ApiProvider.swift in Sources */,
 				30FE21E72363A33A006B8A21 /* PhotoViewModel.swift in Sources */,
+				30FE21F223674640006B8A21 /* PhotoDetailsViewController.swift in Sources */,
 				30FE21E5236399C5006B8A21 /* PopularPhotos.swift in Sources */,
 				30FE21ED23662533006B8A21 /* ImageDownloadOperation.swift in Sources */,
 				30FE21BE236385B7006B8A21 /* SceneDelegate.swift in Sources */,

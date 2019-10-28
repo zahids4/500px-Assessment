@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,6 +25,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OcD-N1-1ow">
                                             <rect key="frame" x="82" y="50" width="250" height="250"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="250" id="Ses-Nc-jpu"/>
                                                 <constraint firstAttribute="width" constant="250" id="duk-pa-3c3"/>
@@ -54,10 +56,47 @@
                             <outlet property="delegate" destination="g2V-lh-kvM" id="B8Q-7C-GS6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="zcf-iR-xPD"/>
+                    <connections>
+                        <segue destination="5bD-0z-t7j" kind="presentation" identifier="photoDetailsSegue" id="kP3-kq-NCw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmP-fa-6Fb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="112"/>
+            <point key="canvasLocation" x="67" y="106"/>
+        </scene>
+        <!--Photo Details View Controller-->
+        <scene sceneID="wkR-1g-Jbj">
+            <objects>
+                <viewController id="5bD-0z-t7j" customClass="PhotoDetailsViewController" customModule="_00px_Assessment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hMi-BZ-O23">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hv6-st-hH1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="550" id="uVz-dI-c96"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hv6-st-hH1" firstAttribute="centerX" secondItem="hMi-BZ-O23" secondAttribute="centerX" id="Alg-zf-FcC"/>
+                            <constraint firstItem="ijh-0b-HjU" firstAttribute="trailing" secondItem="hv6-st-hH1" secondAttribute="trailing" id="MtD-XT-BHj"/>
+                            <constraint firstItem="hv6-st-hH1" firstAttribute="top" secondItem="ijh-0b-HjU" secondAttribute="top" id="ZCb-KZ-JoS"/>
+                            <constraint firstItem="hv6-st-hH1" firstAttribute="leading" secondItem="ijh-0b-HjU" secondAttribute="leading" id="u2T-6S-9D0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ijh-0b-HjU"/>
+                    </view>
+                    <connections>
+                        <outlet property="enlargedPhotoImageView" destination="hv6-st-hH1" id="c6A-bR-DyI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ffS-iL-fh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857.97101449275374" y="105.80357142857143"/>
         </scene>
     </scenes>
 </document>

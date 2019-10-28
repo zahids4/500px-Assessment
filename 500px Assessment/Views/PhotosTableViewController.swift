@@ -21,6 +21,8 @@ class PhotosTableViewController: UITableViewController {
     private let operations = ImageDownloadOperations()
     private var viewModel: PhotosListViewModel!
     
+    var selectedImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.prefetchDataSource = self
@@ -46,6 +48,8 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.tableView.deselectRow(at: indexPath, animated: true)
+            self.selectedImage = self.viewModel.photo(at: indexPath.row).image
+            self.performSegue(withIdentifier: "photoDetailsSegue", sender: self)
         }
     }
     
@@ -98,6 +102,13 @@ class PhotosTableViewController: UITableViewController {
         
       operations.downloadsInProgress[indexPath] = downloadOperation
       operations.operationQueue.addOperation(downloadOperation)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "photoDetailsSegue" {
+            let vc = segue.destination as! PhotoDetailsViewController
+            vc.selectedImage = selectedImage
+        }
     }
 }
 
