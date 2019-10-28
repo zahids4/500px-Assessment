@@ -47,8 +47,9 @@ class PhotoViewModel: PhotoViewModelProtocol {
     
     var formattedCreatedAtText: String {
         let isoFormatter = ISO8601DateFormatter()
-        let isoDate = isoFormatter.date(from: photo.createdAt)
-        return String(describing: isoDate!)
+        let formattedDate = isoFormatter.date(from: photo.createdAt)!
+        //TODO: get time elpased since posting then swift between hrs, yesterday, weeks etc.
+        return "\(formattedDate)"
     }
     
     func getDataFromImageURL() -> Data? {
