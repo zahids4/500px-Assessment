@@ -93,7 +93,7 @@ class PhotosTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "photoDetailsSegue" {
             let vc = segue.destination as! PhotoDetailsViewController
-            vc.photo = selectedPhoto
+            vc.photoViewModel = selectedPhoto
         }
     }
 }

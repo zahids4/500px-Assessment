@@ -18,7 +18,7 @@ class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var numberOfCommentsLabel: UILabel!
     @IBOutlet weak var detailsView: UIView!
     
-    var photo: PhotoViewModelProtocol!
+    var photoViewModel: PhotoViewModelProtocol!
     
     private var hideDetailsGesture: UITapGestureRecognizer!
     private var showDetailsGesture: UITapGestureRecognizer!
@@ -33,12 +33,12 @@ class PhotoDetailsViewController: UIViewController {
     }
     
     fileprivate func configureView() {
-        fullscreenPhotoImageView.image = photo.image
-        byLabel.text = photo.formattedByLabelText
-        createdAtLabel.text = photo.formattedCreatedAtText
-        nameLabel.text = photo.name
-        numberOfLikesLabel.text = photo.formattedLikesText
-        numberOfCommentsLabel.text = photo.commentsText
+        fullscreenPhotoImageView.image = photoViewModel.image
+        byLabel.text = photoViewModel.formattedByLabelText
+        createdAtLabel.text = photoViewModel.formattedCreatedAtText
+        nameLabel.text = photoViewModel.name
+        numberOfLikesLabel.text = photoViewModel.formattedLikesText
+        numberOfCommentsLabel.text = photoViewModel.commentsText
     }
     
     fileprivate func setupGestures() {
@@ -48,13 +48,13 @@ class PhotoDetailsViewController: UIViewController {
     
     fileprivate func setAvatarImageView() {
         DispatchQueue.main.async {
-            self.avatarImageView.image = self.photo.userImage
+            self.avatarImageView.image = self.photoViewModel.userImage
         }
     }
     
     fileprivate func fetchAndSetUserAvatarIfRequired() {
-        if photo.userImage == UIImage(systemName: "person.fill") {
-            photo.fetchAvatar() {
+        if photoViewModel.userImage == UIImage(systemName: "person.fill") {
+            photoViewModel.fetchAvatar() {
                 self.setAvatarImageView()
             }
         } else {

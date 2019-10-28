@@ -14,27 +14,27 @@ class ImageDownloadOperations {
 }
 
 class DownloadOperation: Operation {
-    var photo: PhotoViewModelProtocol
+    var photoViewModel: PhotoViewModelProtocol
     
     init(_ photo: PhotoViewModelProtocol) {
-        self.photo = photo
+        self.photoViewModel = photo
     }
     
     override func main() {
         if isCancelled { return }
         
-        guard let imageData = photo.fetchImage() else { return }
+        guard let imageData = photoViewModel.fetchImage() else { return }
         
         if isCancelled {
           return
         }
         
         if !imageData.isEmpty {
-            photo.image = UIImage(data:imageData)!
-            photo.imageDownloadState = .downloaded
+            photoViewModel.image = UIImage(data:imageData)!
+            photoViewModel.imageDownloadState = .downloaded
         } else {
-            photo.imageDownloadState = .failed
-            photo.image = UIImage(named: "Failed")!
+            photoViewModel.imageDownloadState = .failed
+            photoViewModel.image = UIImage(named: "Failed")!
         }
     }
     
