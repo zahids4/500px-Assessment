@@ -63,7 +63,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hv6-st-hH1">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hv6-st-hH1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -76,9 +76,18 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE OF PHOTO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QA9-gz-KXM">
+                                        <rect key="frame" x="8" y="51" width="133" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER FULL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-20-Leu">
-                                        <rect key="frame" x="8" y="80" width="139.5" height="21"/>
+                                        <rect key="frame" x="8" y="80" width="175" height="21"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="175" id="nAi-Hm-XmN"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -86,11 +95,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Tt8-20-Leu" firstAttribute="top" secondItem="QA9-gz-KXM" secondAttribute="bottom" constant="8" id="APa-zp-OnL"/>
                                     <constraint firstItem="Tt8-20-Leu" firstAttribute="leading" secondItem="BOa-F5-cy1" secondAttribute="leading" constant="8" id="HCE-Mg-wGd"/>
                                     <constraint firstAttribute="height" constant="150" id="UBk-1f-bHm"/>
                                     <constraint firstItem="Kh0-48-VDv" firstAttribute="top" secondItem="Tt8-20-Leu" secondAttribute="bottom" constant="8" id="fWa-kG-wzY"/>
                                     <constraint firstAttribute="bottom" secondItem="Kh0-48-VDv" secondAttribute="bottom" constant="20" id="hA2-WM-dge"/>
                                     <constraint firstItem="Kh0-48-VDv" firstAttribute="leading" secondItem="BOa-F5-cy1" secondAttribute="leading" constant="8" id="kDD-we-wSW"/>
+                                    <constraint firstItem="QA9-gz-KXM" firstAttribute="leading" secondItem="BOa-F5-cy1" secondAttribute="leading" constant="8" id="pWD-kI-wRW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -109,7 +120,9 @@
                     <connections>
                         <outlet property="byLabel" destination="Tt8-20-Leu" id="lij-KR-0cx"/>
                         <outlet property="createdAtLabel" destination="Kh0-48-VDv" id="M6w-Fm-rge"/>
+                        <outlet property="detailsView" destination="BOa-F5-cy1" id="gVX-6h-9ai"/>
                         <outlet property="fullscreenPhotoImageView" destination="hv6-st-hH1" id="c6A-bR-DyI"/>
+                        <outlet property="nameLabel" destination="QA9-gz-KXM" id="gzz-wl-XZ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffS-iL-fh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
