@@ -22,6 +22,7 @@ protocol PhotoViewModelProtocol {
     var formattedCreatedAtText: String { get }
     var formattedLikesText: String { get }
     var commentsText: String { get }
+    func fetchImage() -> Data?
     func getDataFromImageURL(_ stringUrl: String) -> Data?
     func fetchAvatar(closure: @escaping () -> ())
 }
@@ -63,6 +64,10 @@ class PhotoViewModel: PhotoViewModelProtocol {
     
     var commentsText: String {
         return "\(photo.commentsCount)"
+    }
+    
+    func fetchImage() -> Data? {
+        return getDataFromImageURL(imageUrlString)
     }
     
     func getDataFromImageURL(_ stringUrl: String) -> Data? {
