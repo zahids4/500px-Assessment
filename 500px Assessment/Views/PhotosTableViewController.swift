@@ -85,7 +85,7 @@ class PhotosTableViewController: UITableViewController {
 
 extension PhotosTableViewController: UITableViewDataSourcePrefetching {
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-    if indexPaths.contains(where: { $0.row.isMultiple(of: 45) } ) {
+    if indexPaths.contains(where: isLoadingCell) {
       viewModel.fetchPhotos()
     }
   }
@@ -109,7 +109,7 @@ extension PhotosTableViewController: PhotosListViewModelDelegate {
 
 private extension PhotosTableViewController {
   func isLoadingCell(for indexPath: IndexPath) -> Bool {
-    return indexPath.row >= viewModel.currentCount
+    return indexPath.row + 5 >= viewModel.currentCount
   }
   
   func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
