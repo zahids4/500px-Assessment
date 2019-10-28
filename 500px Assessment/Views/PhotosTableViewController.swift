@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 
 class PhotosTableViewController: UITableViewController {
-    private var currentPage = 1
     private let operations = ImageDownloadOperations()
     private var viewModel: PhotosListViewModel!
     
@@ -97,7 +96,8 @@ extension PhotosTableViewController: PhotosListViewModelDelegate {
       tableView.reloadData()
       return
     }
-    tableView.insertRows(at: newIndexPathsToReload, with: .fade)
+    
+    tableView.insertRows(at: newIndexPathsToReload, with: .automatic)
     let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
     tableView.reloadRows(at: indexPathsToReload, with: .automatic)
   }

@@ -59,7 +59,6 @@ final class PhotosListViewModel {
                   
                     if popularPhotos.currentPage > 1 {
                         let indexPathsToReload = self.calculateIndexPathsToReload(from: newPhotos)
-                        print(indexPathsToReload)
                         self.delegate?.onFetchCompleted(with: indexPathsToReload)
                     } else {
                         self.delegate?.onFetchCompleted(with: .none)
