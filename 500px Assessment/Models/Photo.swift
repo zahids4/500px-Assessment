@@ -10,5 +10,7 @@ import Foundation
 
 public struct Photo: Decodable {
     public let name: String
+    public let user: User
     public let imageUrl: [String]
+    public let createdAt: String
 }
