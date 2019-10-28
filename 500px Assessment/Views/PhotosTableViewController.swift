@@ -16,6 +16,8 @@ class PhotosTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.prefetchDataSource = self
+        
         viewModel = PhotosListViewModel(delegate: self)
         viewModel.fetchPhotos()
     }
@@ -81,14 +83,21 @@ class PhotosTableViewController: UITableViewController {
     }
 }
 
+extension PhotosTableViewController: UITableViewDataSourcePrefetching {
+  func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+    if indexPaths.contains(where: { $0.row.isMultiple(of: 45) } ) {
+      viewModel.fetchPhotos()
+    }
+  }
+}
+
 extension PhotosTableViewController: PhotosListViewModelDelegate {
   func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
     guard let newIndexPathsToReload = newIndexPathsToReload else {
-      tableView.isHidden = false
       tableView.reloadData()
       return
     }
-
+    tableView.insertRows(at: newIndexPathsToReload, with: .fade)
     let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
     tableView.reloadRows(at: indexPathsToReload, with: .automatic)
   }

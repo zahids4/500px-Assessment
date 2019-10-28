@@ -44,21 +44,22 @@ final class PhotosListViewModel {
         }
       
         isFetchInProgress = true
-        
+    
         ApiProvider.shared.fetchPopularPhotos(page: currentPage) { result in
+
             switch result {
             case .success(let popularPhotos):
                 DispatchQueue.main.async {
                     self.currentPage += 1
                     self.isFetchInProgress = false
-                    self.total = popularPhotos.photos.count
-                    
+
                     let newPhotos =  popularPhotos.convertPhotosToViewModels()
                     self.photos += newPhotos
-                  
+                    self.total = self.photos.count
                   
                     if popularPhotos.currentPage > 1 {
                         let indexPathsToReload = self.calculateIndexPathsToReload(from: newPhotos)
+                        print(indexPathsToReload)
                         self.delegate?.onFetchCompleted(with: indexPathsToReload)
                     } else {
                         self.delegate?.onFetchCompleted(with: .none)
