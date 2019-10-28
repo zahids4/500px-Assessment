@@ -10,6 +10,7 @@ import Foundation
 
 public struct PopularPhotos: Decodable {
     public let photos: [Photo]
+    public let currentPage: Int
     
     func convertPhotosToViewModels() -> [PhotoViewModel] {
         return self.photos.map { PhotoViewModel(photo: $0) }

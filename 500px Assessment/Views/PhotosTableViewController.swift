@@ -12,27 +12,12 @@ import Alamofire
 class PhotosTableViewController: UITableViewController {
     private var currentPage = 1
     private let operations = ImageDownloadOperations()
-    private var photoViewModels = [PhotoViewModelProtocol]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var viewModel: PhotosListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPopularPhotos(page: 1)
-    }
-    
-    private func fetchPopularPhotos(page: Int) {
-        currentPage = page
-        ApiProvider.shared.fetchPopularPhotos(page: page) { result in
-            switch result {
-            case .success(let popularPhotos):
-                self.photoViewModels += popularPhotos.convertPhotosToViewModels()
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        }
+        viewModel = PhotosListViewModel(delegate: self)
+        viewModel.fetchPhotos()
     }
 
     // MARK: - Table view data source
@@ -42,7 +27,7 @@ class PhotosTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photoViewModels.count
+        return viewModel.totalCount
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,8 +43,8 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         
-        let photo = photoViewModels[indexPath.row]
-        cell.configure(using: photo)
+        let photo = viewModel.photo(at: indexPath.row)
+        cell.configure(using: viewModel.photo(at: indexPath.row))
         
         switch (photo.imageDownloadState) {
         case .failed:
@@ -94,4 +79,33 @@ class PhotosTableViewController: UITableViewController {
       operations.downloadsInProgress[indexPath] = downloadOperation
       operations.operationQueue.addOperation(downloadOperation)
     }
+}
+
+extension PhotosTableViewController: PhotosListViewModelDelegate {
+  func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
+    guard let newIndexPathsToReload = newIndexPathsToReload else {
+      tableView.isHidden = false
+      tableView.reloadData()
+      return
+    }
+
+    let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+    tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+  }
+  
+  func onFetchFailed(with reason: String) {
+    print("Fetch Failed, error \(reason)")
+  }
+}
+
+private extension PhotosTableViewController {
+  func isLoadingCell(for indexPath: IndexPath) -> Bool {
+    return indexPath.row >= viewModel.currentCount
+  }
+  
+  func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+    let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
+    let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+    return Array(indexPathsIntersection)
+  }
 }
