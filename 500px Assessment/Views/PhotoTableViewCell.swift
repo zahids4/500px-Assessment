@@ -16,5 +16,8 @@ class PhotoTableViewCell: UITableViewCell {
         nameLabel.text = photoViewModel.name
         photoImageView.image = photoViewModel.image
     }
-
+    
+    func setNameLabelForFailedDownload() {
+        nameLabel?.text = "Failed to load"
+    }
 }

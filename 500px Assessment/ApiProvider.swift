@@ -10,7 +10,8 @@ import Foundation
 import Alamofire
 
 private let imageSize = 2048
-struct params: Encodable {
+private let feature = "popular"
+private struct params: Encodable {
     let feature: String
     let consumer_key: String
     let image_size: Int
@@ -29,7 +30,7 @@ class ApiProvider {
     }()
     
     func fetchPopularPhotos(page: Int, completionHandler: @escaping (Result<PopularPhotos, Error>) -> ()) {
-        let paramsForPhotos = params(feature: "popular",
+        let paramsForPhotos = params(feature: feature,
                                      consumer_key: appDelegate.apiKey,
                                      image_size: imageSize,
                                      page: page)

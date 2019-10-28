@@ -63,7 +63,7 @@ class PhotosTableViewController: UITableViewController {
         switch (photo.imageDownloadState) {
         case .failed:
             indicator.stopAnimating()
-            cell.nameLabel?.text = "Failed to load"
+            cell.setNameLabelForFailedDownload()
         case .new:
             indicator.startAnimating()
             if !tableView.isDragging && !tableView.isDecelerating {
