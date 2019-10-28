@@ -10,12 +10,15 @@ import UIKit
 
 class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var fullscreenPhotoImageView: UIImageView!
-    
-    var selectedImage: UIImage!
+    @IBOutlet weak var byLabel: UILabel!
+    @IBOutlet weak var createdAtLabel: UILabel!
+    var photo: PhotoViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fullscreenPhotoImageView.image = selectedImage
+        fullscreenPhotoImageView.image = photo.image
+        byLabel.text = photo.formattedByLabelText
+        createdAtLabel.text = photo.formattedCreatedAtText
     }
 
 }

@@ -17,6 +17,8 @@ protocol PhotoViewModelProtocol {
     var imageUrlString: String { get }
     var imageDownloadState: ImageDownloadState { get set }
     var image: UIImage { get set }
+    var formattedByLabelText: String { get }
+    var formattedCreatedAtText: String { get }
     func getDataFromImageURL() -> Data?
 }
 
@@ -38,6 +40,16 @@ class PhotoViewModel: PhotoViewModelProtocol {
     var imageDownloadState: ImageDownloadState = .new
     
     var image: UIImage = UIImage(named: "Placeholder")!
+    
+    var formattedByLabelText: String {
+        return "By: \(photo.user.fullName)"
+    }
+    
+    var formattedCreatedAtText: String {
+        let isoFormatter = ISO8601DateFormatter()
+        let isoDate = isoFormatter.date(from: photo.createdAt)
+        return String(describing: isoDate!)
+    }
     
     func getDataFromImageURL() -> Data? {
         return try? Data(contentsOf: URL(string: imageUrlString)!)

@@ -21,7 +21,7 @@ class PhotosTableViewController: UITableViewController {
     private let operations = ImageDownloadOperations()
     private var viewModel: PhotosListViewModel!
     
-    var selectedImage: UIImage!
+    var selectedPhoto: PhotoViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.tableView.deselectRow(at: indexPath, animated: true)
-            self.selectedImage = self.viewModel.photo(at: indexPath.row).image
+            self.selectedPhoto = self.viewModel.photo(at: indexPath.row)
             self.performSegue(withIdentifier: "photoDetailsSegue", sender: self)
         }
     }
@@ -93,7 +93,7 @@ class PhotosTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "photoDetailsSegue" {
             let vc = segue.destination as! PhotoDetailsViewController
-            vc.selectedImage = selectedImage
+            vc.photo = selectedPhoto
         }
     }
 }

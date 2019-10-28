@@ -65,19 +65,50 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hv6-st-hH1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOa-F5-cy1">
+                                <rect key="frame" x="0.0" y="683" width="414" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/1994" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh0-48-VDv">
+                                        <rect key="frame" x="8" y="109" width="85" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER FULL NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt8-20-Leu">
+                                        <rect key="frame" x="8" y="80" width="139.5" height="21"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Tt8-20-Leu" firstAttribute="leading" secondItem="BOa-F5-cy1" secondAttribute="leading" constant="8" id="HCE-Mg-wGd"/>
+                                    <constraint firstAttribute="height" constant="150" id="UBk-1f-bHm"/>
+                                    <constraint firstItem="Kh0-48-VDv" firstAttribute="top" secondItem="Tt8-20-Leu" secondAttribute="bottom" constant="8" id="fWa-kG-wzY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kh0-48-VDv" secondAttribute="bottom" constant="20" id="hA2-WM-dge"/>
+                                    <constraint firstItem="Kh0-48-VDv" firstAttribute="leading" secondItem="BOa-F5-cy1" secondAttribute="leading" constant="8" id="kDD-we-wSW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hv6-st-hH1" secondAttribute="bottom" id="51H-cO-2i0"/>
+                            <constraint firstItem="BOa-F5-cy1" firstAttribute="leading" secondItem="ijh-0b-HjU" secondAttribute="leading" id="CeP-tj-FdL"/>
                             <constraint firstItem="ijh-0b-HjU" firstAttribute="trailing" secondItem="hv6-st-hH1" secondAttribute="trailing" id="MtD-XT-BHj"/>
                             <constraint firstItem="hv6-st-hH1" firstAttribute="top" secondItem="ijh-0b-HjU" secondAttribute="top" id="ZCb-KZ-JoS"/>
+                            <constraint firstItem="BOa-F5-cy1" firstAttribute="trailing" secondItem="ijh-0b-HjU" secondAttribute="trailing" id="sWB-ye-z8H"/>
                             <constraint firstItem="hv6-st-hH1" firstAttribute="leading" secondItem="ijh-0b-HjU" secondAttribute="leading" id="u2T-6S-9D0"/>
+                            <constraint firstAttribute="bottom" secondItem="BOa-F5-cy1" secondAttribute="bottom" constant="9" id="yYm-qJ-xk4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ijh-0b-HjU"/>
                     </view>
                     <connections>
+                        <outlet property="byLabel" destination="Tt8-20-Leu" id="lij-KR-0cx"/>
+                        <outlet property="createdAtLabel" destination="Kh0-48-VDv" id="M6w-Fm-rge"/>
                         <outlet property="fullscreenPhotoImageView" destination="hv6-st-hH1" id="c6A-bR-DyI"/>
                     </connections>
                 </viewController>
