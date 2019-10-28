@@ -100,7 +100,7 @@ class PhotosTableViewController: UITableViewController {
 
 extension PhotosTableViewController: UITableViewDataSourcePrefetching {
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-    if indexPaths.contains(where: isLoadingCell) {
+    if indexPaths.contains(where: shouldFetchNextPage) {
       viewModel.fetchPhotos()
     }
   }
@@ -124,7 +124,7 @@ extension PhotosTableViewController: PhotosListViewModelDelegate {
 }
 
 private extension PhotosTableViewController {
-  func isLoadingCell(for indexPath: IndexPath) -> Bool {
+  func shouldFetchNextPage(for indexPath: IndexPath) -> Bool {
     return indexPath.row + prefetchPhotosBuffer >= viewModel.currentCount
   }
   

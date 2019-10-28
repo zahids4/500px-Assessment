@@ -22,8 +22,6 @@ class PhotoDetailsViewController: UIViewController {
     private var hideDetailsGesture: UITapGestureRecognizer!
     private var showDetailsGesture: UITapGestureRecognizer!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestures()
