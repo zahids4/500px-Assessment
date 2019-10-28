@@ -55,28 +55,14 @@ class PhotosTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
-        
-        if cell.accessoryView == nil {
-            let indicator = UIActivityIndicatorView(style: .medium)
-            cell.accessoryView = indicator
-        }
-        
-        let indicator = cell.accessoryView as! UIActivityIndicatorView
-        
+
         let photo = viewModel.photo(at: indexPath.row)
         cell.configure(using: viewModel.photo(at: indexPath.row))
         
-        switch (photo.imageDownloadState) {
-        case .failed:
-            indicator.stopAnimating()
-            cell.setNameLabelForFailedDownload()
-        case .new:
-            indicator.startAnimating()
-            if !tableView.isDragging && !tableView.isDecelerating {
-                startDownloadOperation(for: photo, at: indexPath)
-            }
-        case .downloaded:
-            indicator.stopAnimating()
+        let shouldStartImageDownload: Bool = photo.imageDownloadState == .new && !tableView.isDragging && !tableView.isDecelerating
+        
+        if shouldStartImageDownload {
+            startDownloadOperation(for: photo, at: indexPath)
         }
 
         return cell
@@ -95,8 +81,8 @@ class PhotosTableViewController: UITableViewController {
         }
         
         DispatchQueue.main.async {
-          self.operations.downloadsInProgress.removeValue(forKey: indexPath)
-          self.tableView.reloadRows(at: [indexPath], with: .fade)
+            self.operations.downloadsInProgress.removeValue(forKey: indexPath)
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
         
