@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 
+private let prefetchPhotosBuffer: Int = 5
+
 protocol DownloadForVisibleCellsProtocol {
     func resumeDownloadsForVisibleCells()
     func shoudSuspendOperations(_ isSuspended: Bool)
@@ -126,7 +128,7 @@ extension PhotosTableViewController: PhotosListViewModelDelegate {
 
 private extension PhotosTableViewController {
   func isLoadingCell(for indexPath: IndexPath) -> Bool {
-    return indexPath.row + 5 >= viewModel.currentCount
+    return indexPath.row + prefetchPhotosBuffer >= viewModel.currentCount
   }
   
   func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
@@ -186,4 +188,3 @@ extension PhotosTableViewController: DownloadForVisibleCellsProtocol {
         }
     }
 }
-
