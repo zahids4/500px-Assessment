@@ -8,8 +8,6 @@
 
 import UIKit
 
-fileprivate typealias voidClosure = () -> ()
-
 class ImageDownloadOperations {
     lazy var downloadsInProgress: [IndexPath: DownloadOperation] = [:]
     lazy var operationQueue = OperationQueue()
@@ -24,8 +22,9 @@ class DownloadOperation: Operation {
     
     override func main() {
         if isCancelled { return }
-
-        guard let imageData = photo.getDataFromImageURL() else { return }
+        
+        //TODO: This seems like a code smell refactor it.
+        guard let imageData = photo.getDataFromImageURL(photo.imageUrlString) else { return }
         
         if isCancelled {
           return

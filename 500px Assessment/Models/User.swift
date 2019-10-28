@@ -10,8 +10,10 @@ import Foundation
 
 public struct User: Decodable {
     public let fullName: String
+    public let avatarUrl: String
     
     private enum CodingKeys : String, CodingKey {
         case fullName = "fullname"
+        case avatarUrl = "userpicUrl"
     }
 }

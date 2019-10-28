@@ -8,10 +8,9 @@
 
 import UIKit
 
-private typealias voidClosure = () -> ()
-
 class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var fullscreenPhotoImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var byLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,12 +22,14 @@ class PhotoDetailsViewController: UIViewController {
     
     private var hideDetailsGesture: UITapGestureRecognizer!
     private var showDetailsGesture: UITapGestureRecognizer!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestures()
         addHideDetailsViewGestureToImageView()
         configureView()
+        fetchAndSetUserAvatar()
     }
     
     fileprivate func configureView() {
@@ -43,6 +44,14 @@ class PhotoDetailsViewController: UIViewController {
     fileprivate func setupGestures() {
         hideDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(hideDetailsView))
         showDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(showDetailsView))
+    }
+    
+    fileprivate func fetchAndSetUserAvatar() {
+        photo.fetchAvatar() {
+            DispatchQueue.main.async {
+                self.avatarImageView.image = self.photo.userImage
+            }
+        }
     }
     
     @objc func hideDetailsView() {

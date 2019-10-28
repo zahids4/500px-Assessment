@@ -17,11 +17,13 @@ protocol PhotoViewModelProtocol {
     var imageUrlString: String { get }
     var imageDownloadState: ImageDownloadState { get set }
     var image: UIImage { get set }
+    var userImage: UIImage { get set }
     var formattedByLabelText: String { get }
     var formattedCreatedAtText: String { get }
     var formattedLikesText: String { get }
     var commentsText: String { get }
-    func getDataFromImageURL() -> Data?
+    func getDataFromImageURL(_ stringUrl: String) -> Data?
+    func fetchAvatar(closure: @escaping () -> ())
 }
 
 class PhotoViewModel: PhotoViewModelProtocol {
@@ -43,6 +45,8 @@ class PhotoViewModel: PhotoViewModelProtocol {
     
     var image: UIImage = UIImage(named: "Placeholder")!
     
+    var userImage: UIImage = UIImage(systemName: "person.fill")!
+    
     var formattedByLabelText: String {
         return "By: \(photo.user.fullName)"
     }
@@ -61,7 +65,19 @@ class PhotoViewModel: PhotoViewModelProtocol {
         return "\(photo.commentsCount)"
     }
     
-    func getDataFromImageURL() -> Data? {
-        return try? Data(contentsOf: URL(string: imageUrlString)!)
+    func getDataFromImageURL(_ stringUrl: String) -> Data? {
+        return try? Data(contentsOf: URL(string: stringUrl)!)
+    }
+    
+    func fetchAvatar(closure: @escaping voidClosure) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            guard let imageData = self.getDataFromImageURL(self.photo.user.avatarUrl) else { return }
+          
+            if !imageData.isEmpty {
+                self.userImage = UIImage(data:imageData)!
+            }
+            
+            closure()
+        }
     }
 }

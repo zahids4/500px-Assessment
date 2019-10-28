@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+public typealias voidClosure = () -> ()
 private let imageSize = 600
 private let feature = "popular"
 private struct params: Encodable {
