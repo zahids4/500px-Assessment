@@ -9,6 +9,12 @@
 import UIKit
 import Alamofire
 
+protocol DownloadForVisibleCellsProtocol {
+    func resumeDownloadsForVisibleCells()
+    func shoudSuspendOperations(_ isSuspended: Bool)
+    func performImageDownloadOnlyForVisibleCells()
+}
+
 class PhotosTableViewController: UITableViewController {
     private let operations = ImageDownloadOperations()
     private var viewModel: PhotosListViewModel!
@@ -44,22 +50,33 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
         
+        if cell.accessoryView == nil {
+            let indicator = UIActivityIndicatorView(style: .medium)
+            cell.accessoryView = indicator
+        }
+        
+        let indicator = cell.accessoryView as! UIActivityIndicatorView
+        
         let photo = viewModel.photo(at: indexPath.row)
         cell.configure(using: viewModel.photo(at: indexPath.row))
         
         switch (photo.imageDownloadState) {
         case .failed:
-          cell.nameLabel?.text = "Failed to load"
+            indicator.stopAnimating()
+            cell.nameLabel?.text = "Failed to load"
         case .new:
-            startDownloadOperation(for: photo, at: indexPath)
+            indicator.startAnimating()
+            if !tableView.isDragging && !tableView.isDecelerating {
+                startDownloadOperation(for: photo, at: indexPath)
+            }
         case .downloaded:
-            print("Do nothing")
+            indicator.stopAnimating()
         }
 
         return cell
     }
     
-    func startDownloadOperation(for photo: PhotoViewModelProtocol, at indexPath: IndexPath) {
+    private func startDownloadOperation(for photo: PhotoViewModelProtocol, at indexPath: IndexPath) {
       guard operations.downloadsInProgress[indexPath] == nil else {
         return
       }
@@ -118,3 +135,55 @@ private extension PhotosTableViewController {
     return Array(indexPathsIntersection)
   }
 }
+
+extension PhotosTableViewController: DownloadForVisibleCellsProtocol {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        shoudSuspendOperations(true)
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            resumeDownloadsForVisibleCells()
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        resumeDownloadsForVisibleCells()
+    }
+    
+    internal func resumeDownloadsForVisibleCells() {
+        performImageDownloadOnlyForVisibleCells()
+        shoudSuspendOperations(false)
+    }
+    
+    internal func shoudSuspendOperations(_ isSuspended: Bool) {
+        operations.operationQueue.isSuspended = isSuspended
+    }
+    
+    internal func performImageDownloadOnlyForVisibleCells() {
+        if let indexPathsForVisibleCells = tableView.indexPathsForVisibleRows {
+            let allPendingOperations = Set(operations.downloadsInProgress.keys)
+        
+            var toBeCancelled = allPendingOperations
+            let visiblePaths = Set(indexPathsForVisibleCells)
+            toBeCancelled.subtract(visiblePaths)
+            
+            var toBeStarted = visiblePaths
+            toBeStarted.subtract(allPendingOperations)
+            
+            for indexPath in toBeCancelled {
+                if let pendingOperation = operations.downloadsInProgress[indexPath] {
+                    pendingOperation.cancel()
+                }
+                
+                operations.downloadsInProgress.removeValue(forKey: indexPath)
+            }
+            
+            for indexPath in toBeStarted {
+                let photo = viewModel.photo(at: indexPath.row)
+                startDownloadOperation(for: photo, at: indexPath)
+            }
+        }
+    }
+}
+
