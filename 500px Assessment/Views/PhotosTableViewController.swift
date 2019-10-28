@@ -59,7 +59,7 @@ class PhotosTableViewController: UITableViewController {
         let photo = viewModel.photo(at: indexPath.row)
         cell.configure(using: viewModel.photo(at: indexPath.row))
         
-        let shouldStartImageDownload: Bool = photo.imageDownloadState == .new && !tableView.isDragging && !tableView.isDecelerating
+        let shouldStartImageDownload: Bool = photo.imageDownloadState == .new 
         
         if shouldStartImageDownload {
             startDownloadOperation(for: photo, at: indexPath)
@@ -135,53 +135,53 @@ private extension PhotosTableViewController {
   }
 }
 
-extension PhotosTableViewController: DownloadForVisibleCellsProtocol {
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        shoudSuspendOperations(true)
-    }
-    
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            resumeDownloadsForVisibleCells()
-        }
-    }
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        resumeDownloadsForVisibleCells()
-    }
-    
-    internal func resumeDownloadsForVisibleCells() {
-        performImageDownloadOnlyForVisibleCells()
-        shoudSuspendOperations(false)
-    }
-    
-    internal func shoudSuspendOperations(_ isSuspended: Bool) {
-        operations.operationQueue.isSuspended = isSuspended
-    }
-    
-    internal func performImageDownloadOnlyForVisibleCells() {
-        if let indexPathsForVisibleCells = tableView.indexPathsForVisibleRows {
-            let allPendingOperations = Set(operations.downloadsInProgress.keys)
-        
-            var toBeCancelled = allPendingOperations
-            let visiblePaths = Set(indexPathsForVisibleCells)
-            toBeCancelled.subtract(visiblePaths)
-            
-            var toBeStarted = visiblePaths
-            toBeStarted.subtract(allPendingOperations)
-            
-            for indexPath in toBeCancelled {
-                if let pendingOperation = operations.downloadsInProgress[indexPath] {
-                    pendingOperation.cancel()
-                }
-                
-                operations.downloadsInProgress.removeValue(forKey: indexPath)
-            }
-            
-            for indexPath in toBeStarted {
-                let photo = viewModel.photo(at: indexPath.row)
-                startDownloadOperation(for: photo, at: indexPath)
-            }
-        }
-    }
-}
+//extension PhotosTableViewController: DownloadForVisibleCellsProtocol {
+//    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        shoudSuspendOperations(true)
+//    }
+//
+//    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if !decelerate {
+//            resumeDownloadsForVisibleCells()
+//        }
+//    }
+//
+//    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        resumeDownloadsForVisibleCells()
+//    }
+//
+//    internal func resumeDownloadsForVisibleCells() {
+//        performImageDownloadOnlyForVisibleCells()
+//        shoudSuspendOperations(false)
+//    }
+//
+//    internal func shoudSuspendOperations(_ isSuspended: Bool) {
+//        operations.operationQueue.isSuspended = isSuspended
+//    }
+//
+//    internal func performImageDownloadOnlyForVisibleCells() {
+//        if let indexPathsForVisibleCells = tableView.indexPathsForVisibleRows {
+//            let allPendingOperations = Set(operations.downloadsInProgress.keys)
+//
+//            var toBeCancelled = allPendingOperations
+//            let visiblePaths = Set(indexPathsForVisibleCells)
+//            toBeCancelled.subtract(visiblePaths)
+//
+//            var toBeStarted = visiblePaths
+//            toBeStarted.subtract(allPendingOperations)
+//
+//            for indexPath in toBeCancelled {
+//                if let pendingOperation = operations.downloadsInProgress[indexPath] {
+//                    pendingOperation.cancel()
+//                }
+//
+//                operations.downloadsInProgress.removeValue(forKey: indexPath)
+//            }
+//
+//            for indexPath in toBeStarted {
+//                let photo = viewModel.photo(at: indexPath.row)
+//                startDownloadOperation(for: photo, at: indexPath)
+//            }
+//        }
+//    }
+//}
