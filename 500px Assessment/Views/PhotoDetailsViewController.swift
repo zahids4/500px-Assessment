@@ -29,7 +29,7 @@ class PhotoDetailsViewController: UIViewController {
         setupGestures()
         addHideDetailsViewGestureToImageView()
         configureView()
-        fetchAndSetUserAvatar()
+        fetchAndSetUserAvatarIfRequired()
     }
     
     fileprivate func configureView() {
@@ -46,11 +46,19 @@ class PhotoDetailsViewController: UIViewController {
         showDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(showDetailsView))
     }
     
-    fileprivate func fetchAndSetUserAvatar() {
-        photo.fetchAvatar() {
-            DispatchQueue.main.async {
-                self.avatarImageView.image = self.photo.userImage
+    fileprivate func setAvatarImageView() {
+        DispatchQueue.main.async {
+            self.avatarImageView.image = self.photo.userImage
+        }
+    }
+    
+    fileprivate func fetchAndSetUserAvatarIfRequired() {
+        if photo.userImage == UIImage(systemName: "person.fill") {
+            photo.fetchAvatar() {
+                self.setAvatarImageView()
             }
+        } else {
+            setAvatarImageView()
         }
     }
     
