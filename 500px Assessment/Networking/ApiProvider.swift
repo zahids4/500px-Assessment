@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-private let imageSize = 2048
+private let imageSize = 600
 private let feature = "popular"
 private struct params: Encodable {
     let feature: String
