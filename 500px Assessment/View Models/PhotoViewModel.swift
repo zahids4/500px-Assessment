@@ -19,6 +19,8 @@ protocol PhotoViewModelProtocol {
     var image: UIImage { get set }
     var formattedByLabelText: String { get }
     var formattedCreatedAtText: String { get }
+    var formattedLikesText: String { get }
+    var commentsText: String { get }
     func getDataFromImageURL() -> Data?
 }
 
@@ -50,6 +52,13 @@ class PhotoViewModel: PhotoViewModelProtocol {
         let formattedDate = isoFormatter.date(from: photo.createdAt)!
         //TODO: get time elpased since posting then swift between hrs, yesterday, weeks etc.
         return "\(formattedDate)"
+    }
+    var formattedLikesText: String {
+        return "\(photo.positiveVotesCount) likes"
+    }
+    
+    var commentsText: String {
+        return "\(photo.commentsCount)"
     }
     
     func getDataFromImageURL() -> Data? {

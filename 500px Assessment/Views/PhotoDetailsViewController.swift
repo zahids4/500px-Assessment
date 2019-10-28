@@ -15,6 +15,8 @@ class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var byLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var numberOfLikesLabel: UILabel!
+    @IBOutlet weak var numberOfCommentsLabel: UILabel!
     @IBOutlet weak var detailsView: UIView!
     
     var photo: PhotoViewModelProtocol!
@@ -34,6 +36,8 @@ class PhotoDetailsViewController: UIViewController {
         byLabel.text = photo.formattedByLabelText
         createdAtLabel.text = photo.formattedCreatedAtText
         nameLabel.text = photo.name
+        numberOfLikesLabel.text = photo.formattedLikesText
+        numberOfCommentsLabel.text = photo.commentsText
     }
     
     fileprivate func setupGestures() {

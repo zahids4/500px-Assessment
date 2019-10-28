@@ -13,4 +13,6 @@ public struct Photo: Decodable {
     public let user: User
     public let imageUrl: [String]
     public let createdAt: String
+    public let positiveVotesCount: Int
+    public let commentsCount: Int
 }
