@@ -113,9 +113,9 @@ extension PhotosTableViewController: PhotosListViewModelDelegate {
       return
     }
     
-    tableView.insertRows(at: newIndexPathsToReload, with: .automatic)
+    tableView.insertRows(at: newIndexPathsToReload, with: .none)
     let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
-    tableView.reloadRows(at: indexPathsToReload, with: .automatic)
+    tableView.reloadRows(at: indexPathsToReload, with: .fade)
   }
   
   func onFetchFailed(with reason: String) {
