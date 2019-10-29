@@ -129,16 +129,15 @@
 		30FE21BA236385B7006B8A21 /* 500px Assessment */ = {
 			isa = PBXGroup;
 			children = (
+				30FE21F023674410006B8A21 /* Networking */,
+				30FE21EB236624FD006B8A21 /* Views */,
 				30FE21E82363A552006B8A21 /* View Models */,
+				30FE21F52368C5D4006B8A21 /* Storyboards */,
 				30FE21E123639898006B8A21 /* Models */,
 				30FE21BB236385B7006B8A21 /* AppDelegate.swift */,
 				30FE21BD236385B7006B8A21 /* SceneDelegate.swift */,
-				30FE21C1236385B7006B8A21 /* Main.storyboard */,
 				30FE21C4236385B9006B8A21 /* Assets.xcassets */,
-				30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */,
 				30FE21C9236385B9006B8A21 /* Info.plist */,
-				30FE21EB236624FD006B8A21 /* Views */,
-				30FE21F023674410006B8A21 /* Networking */,
 			);
 			path = "500px Assessment";
 			sourceTree = "<group>";
@@ -188,6 +187,15 @@
 				30FE21EC23662533006B8A21 /* ImageDownloadOperation.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		30FE21F52368C5D4006B8A21 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				30FE21C1236385B7006B8A21 /* Main.storyboard */,
+				30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
