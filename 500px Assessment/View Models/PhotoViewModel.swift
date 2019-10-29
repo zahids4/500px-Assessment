@@ -49,7 +49,7 @@ class PhotoViewModel: PhotoViewModelProtocol {
     var userImage: UIImage = UIImage(systemName: "person.fill")!
     
     var userName: String {
-        return "\(photo.user.fullName)"
+        return "\(photo.user.userName)"
     }
     
     var formattedCreatedAtText: String {
