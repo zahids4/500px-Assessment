@@ -23,7 +23,6 @@ class PhotoDetailsViewController: UIViewController {
     private var hideDetailsGesture: UITapGestureRecognizer!
     private var showDetailsGesture: UITapGestureRecognizer!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGestures()
@@ -54,7 +53,7 @@ class PhotoDetailsViewController: UIViewController {
     }
     
     fileprivate func makeAvatarFrameCircular() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {            
             self.avatarImageView.layer.borderWidth = 1.0
             self.avatarImageView.layer.masksToBounds = false
             self.avatarImageView.layer.borderColor = UIColor.white.cgColor

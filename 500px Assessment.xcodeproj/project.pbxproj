@@ -12,7 +12,7 @@
 		30FE21C3236385B7006B8A21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C1236385B7006B8A21 /* Main.storyboard */; };
 		30FE21C5236385B9006B8A21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C4236385B9006B8A21 /* Assets.xcassets */; };
 		30FE21C8236385B9006B8A21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30FE21C6236385B9006B8A21 /* LaunchScreen.storyboard */; };
-		30FE21D3236385BA006B8A21 /* _00px_AssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */; };
+		30FE21D3236385BA006B8A21 /* PhotoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21D2236385BA006B8A21 /* PhotoViewModelTests.swift */; };
 		30FE21DE2363896D006B8A21 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */; };
 		30FE21E0236392A6006B8A21 /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21DF236392A6006B8A21 /* ApiProvider.swift */; };
 		30FE21E3236398B5006B8A21 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE21E2236398B5006B8A21 /* Photo.swift */; };
@@ -47,7 +47,7 @@
 		30FE21C7236385B9006B8A21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30FE21C9236385B9006B8A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FE21CE236385BA006B8A21 /* 500px AssessmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "500px AssessmentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _00px_AssessmentTests.swift; sourceTree = "<group>"; };
+		30FE21D2236385BA006B8A21 /* PhotoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModelTests.swift; sourceTree = "<group>"; };
 		30FE21D4236385BA006B8A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30FE21DD2363896D006B8A21 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		30FE21DF236392A6006B8A21 /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		30FE21D1236385BA006B8A21 /* 500px AssessmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				30FE21D2236385BA006B8A21 /* _00px_AssessmentTests.swift */,
+				30FE21D2236385BA006B8A21 /* PhotoViewModelTests.swift */,
 				30FE21D4236385BA006B8A21 /* Info.plist */,
 			);
 			path = "500px AssessmentTests";
@@ -377,7 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30FE21D3236385BA006B8A21 /* _00px_AssessmentTests.swift in Sources */,
+				30FE21D3236385BA006B8A21 /* PhotoViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
