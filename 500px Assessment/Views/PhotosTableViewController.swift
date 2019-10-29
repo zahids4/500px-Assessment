@@ -26,7 +26,7 @@ class PhotosTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.prefetchDataSource = self
-        
+        title = "Popular Photos"
         viewModel = PhotosListViewModel(delegate: self)
         viewModel.fetchPhotos()
     }

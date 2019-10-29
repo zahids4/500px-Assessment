@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g2V-lh-kvM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WQt-n4-Tu6">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--500px-->
+        <!--Navigation Controller-->
+        <scene sceneID="Ekg-F4-MNK">
+            <objects>
+                <navigationController id="WQt-n4-Tu6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sT0-EB-hXI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="g2V-lh-kvM" kind="relationship" relationship="rootViewController" id="ATk-fO-uUR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="enZ-1Q-7Ue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-891" y="106"/>
+        </scene>
+        <!--Photos Table View Controller-->
         <scene sceneID="qTN-lJ-dnO">
             <objects>
-                <tableViewController title="500px" id="g2V-lh-kvM" customClass="PhotosTableViewController" customModule="_00px_Assessment" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="g2V-lh-kvM" customClass="PhotosTableViewController" customModule="_00px_Assessment" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kC7-fC-dfn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +68,14 @@
                             <outlet property="delegate" destination="g2V-lh-kvM" id="B8Q-7C-GS6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zcf-iR-xPD"/>
+                    <navigationItem key="navigationItem" id="zcf-iR-xPD">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="person.circle" catalog="system" id="nan-ri-iKB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="gear" catalog="system" id="B5H-fX-AGX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="5bD-0z-t7j" kind="presentation" identifier="photoDetailsSegue" id="kP3-kq-NCw"/>
                     </connections>
@@ -195,7 +222,9 @@
     </scenes>
     <resources>
         <image name="bubble.right" catalog="system" width="64" height="54"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="heart.fill" catalog="system" width="64" height="54"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
