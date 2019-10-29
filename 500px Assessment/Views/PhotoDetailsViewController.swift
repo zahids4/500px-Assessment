@@ -29,7 +29,12 @@ class PhotoDetailsViewController: UIViewController {
         addHideDetailsViewGestureToImageView()
         configureView()
         fetchAndSetUserAvatarIfRequired()
-        makeAvatarFrameCircular()
+        makeAvatarCircular()
+    }
+    
+    fileprivate func setupGestures() {
+        hideDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(hideDetailsView))
+        showDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(showDetailsView))
     }
     
     fileprivate func configureView() {
@@ -41,9 +46,14 @@ class PhotoDetailsViewController: UIViewController {
         numberOfCommentsLabel.text = photoViewModel.commentsText
     }
     
-    fileprivate func setupGestures() {
-        hideDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(hideDetailsView))
-        showDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(showDetailsView))
+    fileprivate func fetchAndSetUserAvatarIfRequired() {
+        if photoViewModel.userImage == UIImage(systemName: "person.fill") {
+            photoViewModel.fetchAvatar() {
+                self.setAvatarImageView()
+            }
+        } else {
+            setAvatarImageView()
+        }
     }
     
     fileprivate func setAvatarImageView() {
@@ -52,23 +62,13 @@ class PhotoDetailsViewController: UIViewController {
         }
     }
     
-    fileprivate func makeAvatarFrameCircular() {
+    fileprivate func makeAvatarCircular() {
         DispatchQueue.main.async {            
             self.avatarImageView.layer.borderWidth = 1.0
             self.avatarImageView.layer.masksToBounds = false
             self.avatarImageView.layer.borderColor = UIColor.white.cgColor
             self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
             self.avatarImageView.clipsToBounds = true
-        }
-    }
-    
-    fileprivate func fetchAndSetUserAvatarIfRequired() {
-        if photoViewModel.userImage == UIImage(systemName: "person.fill") {
-            photoViewModel.fetchAvatar() {
-                self.setAvatarImageView()
-            }
-        } else {
-            setAvatarImageView()
         }
     }
     
