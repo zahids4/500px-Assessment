@@ -18,7 +18,7 @@ protocol PhotoViewModelProtocol {
     var imageDownloadState: ImageDownloadState { get set }
     var image: UIImage { get set }
     var userImage: UIImage { get set }
-    var formattedByLabelText: String { get }
+    var userName: String { get }
     var formattedCreatedAtText: String { get }
     var formattedLikesText: String { get }
     var commentsText: String { get }
@@ -48,8 +48,8 @@ class PhotoViewModel: PhotoViewModelProtocol {
     
     var userImage: UIImage = UIImage(systemName: "person.fill")!
     
-    var formattedByLabelText: String {
-        return "By: \(photo.user.fullName)"
+    var userName: String {
+        return "\(photo.user.fullName)"
     }
     
     var formattedCreatedAtText: String {

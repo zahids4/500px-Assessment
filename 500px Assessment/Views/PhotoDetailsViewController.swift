@@ -11,7 +11,7 @@ import UIKit
 class PhotoDetailsViewController: UIViewController {
     @IBOutlet weak var fullscreenPhotoImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var byLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var numberOfLikesLabel: UILabel!
@@ -30,11 +30,12 @@ class PhotoDetailsViewController: UIViewController {
         addHideDetailsViewGestureToImageView()
         configureView()
         fetchAndSetUserAvatarIfRequired()
+        makeAvatarFrameCircular()
     }
     
     fileprivate func configureView() {
         fullscreenPhotoImageView.image = photoViewModel.image
-        byLabel.text = photoViewModel.formattedByLabelText
+        userNameLabel.text = photoViewModel.userName
         createdAtLabel.text = photoViewModel.formattedCreatedAtText
         nameLabel.text = photoViewModel.name
         numberOfLikesLabel.text = photoViewModel.formattedLikesText
@@ -49,6 +50,16 @@ class PhotoDetailsViewController: UIViewController {
     fileprivate func setAvatarImageView() {
         DispatchQueue.main.async {
             self.avatarImageView.image = self.photoViewModel.userImage
+        }
+    }
+    
+    fileprivate func makeAvatarFrameCircular() {
+        DispatchQueue.main.async {
+            self.avatarImageView.layer.borderWidth = 1.0
+            self.avatarImageView.layer.masksToBounds = false
+            self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+            self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2
+            self.avatarImageView.clipsToBounds = true
         }
     }
     

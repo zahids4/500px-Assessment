@@ -177,13 +177,13 @@
                     </view>
                     <connections>
                         <outlet property="avatarImageView" destination="4nG-XN-vSt" id="7SH-q9-Fi2"/>
-                        <outlet property="byLabel" destination="Tt8-20-Leu" id="lij-KR-0cx"/>
                         <outlet property="createdAtLabel" destination="Kh0-48-VDv" id="M6w-Fm-rge"/>
                         <outlet property="detailsView" destination="BOa-F5-cy1" id="gVX-6h-9ai"/>
                         <outlet property="fullscreenPhotoImageView" destination="hv6-st-hH1" id="c6A-bR-DyI"/>
                         <outlet property="nameLabel" destination="QA9-gz-KXM" id="gzz-wl-XZ5"/>
                         <outlet property="numberOfCommentsLabel" destination="XZo-j4-rGd" id="beI-Wj-WyC"/>
                         <outlet property="numberOfLikesLabel" destination="dQV-1N-MwE" id="Rj9-JH-CJW"/>
+                        <outlet property="userNameLabel" destination="Tt8-20-Leu" id="lij-KR-0cx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffS-iL-fh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
