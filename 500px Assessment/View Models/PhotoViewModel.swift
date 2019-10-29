@@ -44,7 +44,7 @@ class PhotoViewModel: PhotoViewModelProtocol {
     
     var imageDownloadState: ImageDownloadState = .new
     
-    var image: UIImage = UIImage(named: "Loader")!
+    var image: UIImage = UIImage()
     
     var userImage: UIImage = UIImage(systemName: "person.fill")!
     
